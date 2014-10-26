@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1414356805 source:/home/elmo/Documents/ohjelmointi/C++/LPVisualizer/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<signal.h>
+	<tclap/CmdLine.h>
+	"MidiHandler.h"
+	"FFTHandler.h"
+
+1414357013 /home/elmo/Documents/ohjelmointi/C++/LPVisualizer/MidiHandler.h
+	<stdlib.h>
+	<alsa/asoundlib.h>
+	<tclap/CmdLine.h>
+	<unistd.h>
+
+1414356151 /home/elmo/Documents/ohjelmointi/C++/LPVisualizer/FFTHandler.h
+	<fftw3.h>
+
+1414358620 source:/home/elmo/Documents/ohjelmointi/C++/LPVisualizer/MidiHandler.cpp
+	"MidiHandler.h"
+
+1414356194 source:/home/elmo/Documents/ohjelmointi/C++/LPVisualizer/FFTHandler.cpp
+	"FFTHandler.h"
+
