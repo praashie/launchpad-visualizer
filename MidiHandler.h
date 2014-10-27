@@ -30,6 +30,8 @@ class MidiHandler{
 
 		int currentNote;
 		unsigned char ledBuffer[8][8];
+		bool golBuffer[8][8];
+		bool golNewBuffer[8][8];
 
 };
 #endif

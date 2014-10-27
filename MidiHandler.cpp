@@ -1,6 +1,9 @@
 #include "MidiHandler.h"
 
+
+
 int MidiHandler::init(std::string midiDevice) {
+
 	int status = snd_rawmidi_open(&midi_in, &midi_out, midiDevice.c_str(), SND_RAWMIDI_SYNC);
 
 	if (status == 0) {
@@ -65,6 +68,7 @@ void MidiHandler::updateLEDs() {
 	}
 
 	snd_rawmidi_write(midi_out, buffer, 65);
+	snd_rawmidi_drain(midi_out);
 }
 void MidiHandler::resetLaunchpad(){
 
@@ -75,6 +79,8 @@ void MidiHandler::resetLaunchpad(){
 void MidiHandler::testMIDI() {
 
 	if (!isInitialized) {return;}
+
+	unsigned char readBuffer[];
 
 	currentNote++;
 	if (currentNote > 127) {currentNote = 0;}
@@ -91,9 +97,12 @@ void MidiHandler::testMIDI() {
 
 	for (int x = 0; x < 8; x++) {
 		for (int y = 0; y < 8; y++) {
-			setLED(x, y, 0b0110011 & (currentNote + x - y*4) );
+			setLED(x, y, 0b0110011 & (currentNote + x + y) );
 		}
 	}
+
+
+
 	updateLEDs();
 }
 
