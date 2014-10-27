@@ -22,3 +22,26 @@
 1414356194 source:/home/elmo/Documents/ohjelmointi/C++/LPVisualizer/FFTHandler.cpp
 	"FFTHandler.h"
 
+1414391261 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/FFTHandler.cpp
+	"FFTHandler.h"
+
+1414391261 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/FFTHandler.h
+	<fftw3.h>
+
+1414391261 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<signal.h>
+	<tclap/CmdLine.h>
+	"MidiHandler.h"
+	"FFTHandler.h"
+
+1414399539 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.h
+	<stdlib.h>
+	<alsa/asoundlib.h>
+	<tclap/CmdLine.h>
+	<unistd.h>
+
+1414397295 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.cpp
+	"MidiHandler.h"
+

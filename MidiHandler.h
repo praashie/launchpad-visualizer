@@ -9,8 +9,17 @@
 class MidiHandler{
 	public:
 		int init(std::string midiDevice);
+
+		void sendEvent(unsigned char msg, unsigned char note, unsigned char velocity);
+		void sendNote(bool noteON, unsigned char note, unsigned char velocity);
+
 		void testMIDI();
+
+		void setLaunchpadLED(int x, int y, unsigned char color);
+		void resetLaunchpad();
+
 		void close();
+
 	private:
 		bool isInitialized;
 
@@ -18,7 +27,7 @@ class MidiHandler{
 		snd_rawmidi_t* midi_out;
 
 		int currentNote;
-
+		unsigned char ledBuffer[];
 
 };
 #endif
