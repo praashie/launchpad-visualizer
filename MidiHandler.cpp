@@ -89,9 +89,9 @@ void MidiHandler::testMIDI() {
 	//usleep(100000);
 	*/
 
-	for (int x = 2; x < 6; x++) {
-		for (int y = 2; y < 6; y++) {
-			setLED(x, y, 0b0110011 & (currentNote) );
+	for (int x = 0; x < 8; x++) {
+		for (int y = 0; y < 8; y++) {
+			setLED(x, y, 0b0110011 & (currentNote + x - y*4) );
 		}
 	}
 	updateLEDs();
