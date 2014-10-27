@@ -6,6 +6,13 @@ int MidiHandler::init(std::string midiDevice) {
 	if (status == 0) {
 
 		currentNote = 0;
+
+		for (int x = 0; x < 8; x++) {
+			for (int y = 0; y < 8; y++) {
+				ledBuffer[x][y] = 0x0;
+			}
+		}
+
 		resetLaunchpad();
 
 		isInitialized = true;
@@ -39,10 +46,25 @@ void MidiHandler::sendNote(bool noteOn, unsigned char note, unsigned char veloci
 
 void MidiHandler::setLED(int x, int y, unsigned char color) {
 
-	if (x < 0 || y < 0) {return;}
+	if (x < 0 || y < 0 || x > 8 || y > 8) {return;}
 
-	sendNote(true, (0x10 * y) + x, color);
+	//sendNote(true, (0x10 * y) + x, color);
+	ledBuffer[x][y] = color;
 
+}
+
+//Refresh the 8x8 LED grid on launchpad
+void MidiHandler::updateLEDs() {
+	unsigned char buffer[65];
+
+	buffer[0] = 0x92; //This midi message initiates the rapid update mode
+	for (int y = 0; y < 8; y++) {
+		for (int x = 0; x < 8; x++) {
+			buffer[8*y + x + 1] = ledBuffer[x][y];
+		}
+	}
+
+	snd_rawmidi_write(midi_out, buffer, 65);
 }
 void MidiHandler::resetLaunchpad(){
 
@@ -54,25 +76,32 @@ void MidiHandler::testMIDI() {
 
 	if (!isInitialized) {return;}
 
-	unsigned char buffer[8];
-
 	currentNote++;
 	if (currentNote > 127) {currentNote = 0;}
 
+	/*
 	sendNote(true, (unsigned char) currentNote, 0b0010010);
 
 	usleep(50000);
 
 	sendNote(false, (unsigned char) currentNote, 0b0010010);
 
-	snd_rawmidi_write(midi_out, buffer, 3);
-
 	//usleep(100000);
+	*/
+
+	for (int x = 2; x < 6; x++) {
+		for (int y = 2; y < 6; y++) {
+			setLED(x, y, 0b0110011 & (currentNote) );
+		}
+	}
+	updateLEDs();
 }
 
 
 void MidiHandler::close() {
 	if (isInitialized) {
+		resetLaunchpad();
+
 		snd_rawmidi_close(midi_in);
 		snd_rawmidi_close(midi_out);
 	}

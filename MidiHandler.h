@@ -15,7 +15,9 @@ class MidiHandler{
 
 		void testMIDI();
 
-		void setLaunchpadLED(int x, int y, unsigned char color);
+		void setLED(int x, int y, unsigned char color);
+		void updateLEDs();
+
 		void resetLaunchpad();
 
 		void close();
@@ -27,7 +29,7 @@ class MidiHandler{
 		snd_rawmidi_t* midi_out;
 
 		int currentNote;
-		unsigned char ledBuffer[];
+		unsigned char ledBuffer[8][8];
 
 };
 #endif
