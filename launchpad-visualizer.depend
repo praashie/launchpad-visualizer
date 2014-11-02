@@ -68,10 +68,10 @@
 1414509402 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.cpp
 	"MidiHandler.h"
 
-1414887579 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/GameOfLife.cpp
+1414954411 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/GameOfLife.cpp
 	"../include/GameOfLife.h"
 
-1414882868 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/include/GameOfLife.h
+1414953844 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/include/GameOfLife.h
 	"MidiHandler.h"
 
 1414881183 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/FFTHandler.cpp
@@ -94,6 +94,6 @@
 	<unistd.h>
 	"GameOfLife.h"
 
-1414887739 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/MidiHandler.cpp
+1414887786 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/MidiHandler.cpp
 	"../include/MidiHandler.h"
 

@@ -15,6 +15,7 @@ class GameOfLife
 
 		static bool isRunning;
 		static bool singleStep;
+		static bool colorMode;
 };
 
 #endif // GAMEOFLIFE_H

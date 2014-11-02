@@ -5,6 +5,7 @@ bool GameOfLife::cellsNew[8][8];
 
 bool GameOfLife::isRunning;
 bool GameOfLife::singleStep;
+bool GameOfLife::colorMode;
 
 int GameOfLife::init()
 {
@@ -15,6 +16,8 @@ int GameOfLife::init()
 		}
 	}
 	isRunning = false;
+	colorMode = false;
+
 	return 0;
 }
 
@@ -38,6 +41,10 @@ void GameOfLife::update() {
 		singleStep = true;
 	}
 
+	if (MidiHandler::isButtonPressed(5, 8)) {
+		colorMode = !colorMode;
+	}
+
 	if (singleStep) {isRunning = true;}
 
 	if (isRunning) {
@@ -52,7 +59,12 @@ void GameOfLife::update() {
 
 	for (int x = 0; x < 8; x++) {
 		for (int y = 0; y < 8; y++) {
-			if (!isRunning && MidiHandler::isButtonPressed(x, y)) {
+			if (MidiHandler::isButtonPressed(4, 8)) { //Clear everything
+				cellsNew[x][y] = false;
+				cellsOld[x][y] = false;
+				isRunning = false;
+			}
+			else if (!isRunning && MidiHandler::isButtonPressed(x, y)) {
 					cellsNew[x][y] = !(cellsNew[x][y]);
 			} else if (isRunning) {
 				//count the number of neighboring cells
@@ -73,10 +85,19 @@ void GameOfLife::update() {
 
 			bool newState = cellsNew[x][y];
 			bool oldState = cellsOld[x][y];
-			if (oldState && newState) {MidiHandler::setLED(x, y, 0x3E);}//surviving cell
-			else if (oldState && !newState) {MidiHandler::setLED(x, y, 0x0D);}//dying cell
-			else if (!oldState && newState) {MidiHandler::setLED(x, y, 0x38);}//newborn cell
-			else {MidiHandler::setLED(x, y, 0x00);}
+			unsigned char color;
+
+			if (colorMode) {
+				if ((oldState && newState)) {color = 0x3E;}//surviving cell
+				else if (oldState && !newState) {color = 0x0D;}//dying cell
+				else if (!oldState && newState) {color = 0x38;}//newborn cell
+				else {color = 0x00;}
+			} else {
+				if (newState) {color = 0x3E;}
+				else {color = 0x00;}
+			}
+
+			MidiHandler::setLED(x, y, color);
 		}
 	}
 
@@ -86,12 +107,13 @@ void GameOfLife::update() {
 	}
 
 
-	if (isRunning) {
-		MidiHandler::setLED(7, 8, 0x3C);
-	} else {
-		MidiHandler::setLED(7, 8, 0x0F);
-	}
+	if (isRunning) {MidiHandler::setLED(7, 8, 0x3C);}
+	else {MidiHandler::setLED(7, 8, 0x0F);}
+
+	if (colorMode) {MidiHandler::setLED(5, 8, 0x3C);}
+	else {MidiHandler::setLED(5, 8, 0x0F);}
 
 	MidiHandler::setLED(6, 8, 0x3E);
+	MidiHandler::setLED(4, 8, 0x0F);
 
 }
