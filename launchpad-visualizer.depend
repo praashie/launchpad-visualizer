@@ -45,3 +45,55 @@
 1414409992 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.cpp
 	"MidiHandler.h"
 
+1414424038 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/FFTHandler.cpp
+	"FFTHandler.h"
+
+1414424038 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/FFTHandler.h
+	<fftw3.h>
+
+1414424038 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<signal.h>
+	<tclap/CmdLine.h>
+	"MidiHandler.h"
+	"FFTHandler.h"
+
+1414507935 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.h
+	<stdlib.h>
+	<alsa/asoundlib.h>
+	<tclap/CmdLine.h>
+	<unistd.h>
+
+1414509402 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/MidiHandler.cpp
+	"MidiHandler.h"
+
+1414887579 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/GameOfLife.cpp
+	"../include/GameOfLife.h"
+
+1414882868 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/include/GameOfLife.h
+	"MidiHandler.h"
+
+1414881183 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/FFTHandler.cpp
+	"../include/FFTHandler.h"
+
+1414424038 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/include/FFTHandler.h
+	<fftw3.h>
+
+1414884627 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<signal.h>
+	<tclap/CmdLine.h>
+	"../include/GameOfLife.h"
+
+1414883064 /home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/include/MidiHandler.h
+	<stdlib.h>
+	<string>
+	<alsa/asoundlib.h>
+	<unistd.h>
+	"GameOfLife.h"
+
+1414887739 source:/home/elmo/Documents/ohjelmointi/cpp/launchpad-visualizer/src/MidiHandler.cpp
+	"../include/MidiHandler.h"
+
