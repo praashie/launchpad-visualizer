@@ -8,7 +8,7 @@ THIS PROJECT IS A **WORK-IN-PROGRESS**.
 Current progress:
 
 * Launchpad MIDI handling
-	testing with interactive Conway's Game of Life
+	* testing with interactive Conway's Game of Life
 
 Todo:
 * Audio handling
