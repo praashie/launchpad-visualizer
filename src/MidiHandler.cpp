@@ -3,6 +3,7 @@
 
 bool MidiHandler::isInitialized;
 bool MidiHandler::ledBuffering;
+bool MidiHandler::bufferState;
 
 snd_rawmidi_t* MidiHandler::midi_in;
 snd_rawmidi_t* MidiHandler::midi_out;
@@ -38,6 +39,8 @@ int MidiHandler::init(std::string midiDevice) {
 		resetLaunchpad();
 
 		isInitialized = true;
+
+		if (ledBuffering) {sendEvent(0xB0, 0x00, 0x31);}
 
 	}
 
@@ -184,18 +187,34 @@ void MidiHandler::updateLEDs() {
 
 
 		snd_rawmidi_write(midi_out, buffer, 81);
-	} else {
+
+	} else { //Launchpad's internal double buffering
 
 		unsigned char color;
 
-		sendEvent(0xB0, 0x00, 0x31); //Set buffer 1 to be displayed, allowing us to write to buffer 0 without displaying anything
-
 		for (int x = 0; x < 9; x++) {
-			for (int y = 0; y < 8; y++) {
-				color = ledBuffer[x][y] & 0b00110011;
-				sendNote(true, (y * 0x10) + x, color);
+			for (int y = 0; y < 9; y++) {
+
+				if (ledBuffer[x][y] != ledBufferOld[x][y]) {
+					color = ledBuffer[x][y] & 0b00110011;
+
+					if (y < 8) {
+						sendEvent(0x90, (y * 0x10) + x, color);
+					} else {
+						sendEvent(0xB0, 0x68 + x, color);
+					}
+				}
+				ledBufferOld[x][y] = ledBuffer[x][y];
 			}
 		}
+
+		if (bufferState) {
+			sendEvent(0xB0, 0x00, 0x31);
+		} else {
+			sendEvent(0xB0, 0x00, 0x34);
+		}
+
+		bufferState = !bufferState;
 
 	}
 	snd_rawmidi_drain(midi_out);

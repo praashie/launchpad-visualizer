@@ -10,6 +10,8 @@
 
 class MidiHandler{
 	public:
+		static bool ledBuffering;
+
 		static int init(std::string midiDevice);
 
 		static void sendEvent(unsigned char msg, unsigned char note, unsigned char velocity);
@@ -44,6 +46,6 @@ class MidiHandler{
 		static unsigned char ledBuffer[9][9];
 		static unsigned char ledBufferOld[9][9];
 
-		static bool ledBuffering;
+		static bool bufferState;
 };
 #endif
