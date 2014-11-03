@@ -89,18 +89,21 @@ void handleTCLAP(int argc, char* argv[]) {
 		TCLAP::ValueArg<std::string> alsaDeviceArg	("i", "input", "Device name of the ALSA audio input to be analyzed", true, "", "string");
 		TCLAP::ValueArg<std::string> launchpadDeviceArg	("o", "output", "Device name of the ALSA MIDI output to be used as a display", true, "", "string");
 		TCLAP::SwitchArg verboseArg		("v", "verbose", "Give verbose output", false);
+		TCLAP::SwitchArg ledBufferingArg("b", "buffered-leds", "Update the launchpad LEDs by using the launchpad's internal buffers");
 
 		//Add argument definitions into program definition
 		cmd.add(alsaDeviceArg);
 		cmd.add(launchpadDeviceArg);
 		cmd.add(verboseArg);
+		cmd.add(ledBufferingArg);
 
 		//Parse arguments
 		cmd.parse( argc, argv);
 
-		alsaDeviceName 			= alsaDeviceArg.getValue();
-		launchpadDeviceName 	= launchpadDeviceArg.getValue();
-		verbose 				= verboseArg.getValue();
+		alsaDeviceName 				= alsaDeviceArg.getValue();
+		launchpadDeviceName 		= launchpadDeviceArg.getValue();
+		verbose 					= verboseArg.getValue();
+		MidiHandler::ledBuffering 	= ledBufferingArg.getValue();
 
 	} catch (TCLAP::ArgException &e) {
 		std::cerr << "Error: " << e.error() << " for arg " << e.argId() << std::endl;
@@ -130,7 +133,6 @@ int initProgram() {
 void updateProgram() {
 
 	//TODO
-
 
 	MidiHandler::testMIDI();
 

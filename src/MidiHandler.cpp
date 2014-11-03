@@ -2,6 +2,7 @@
 
 
 bool MidiHandler::isInitialized;
+bool MidiHandler::ledBuffering;
 
 snd_rawmidi_t* MidiHandler::midi_in;
 snd_rawmidi_t* MidiHandler::midi_out;
@@ -13,6 +14,7 @@ int MidiHandler::currentNote;
 bool MidiHandler::noteBuffer[9][9];
 bool MidiHandler::noteBufferOld[9][9];
 unsigned char MidiHandler::ledBuffer[9][9];
+unsigned char MidiHandler::ledBufferOld[9][9];
 
 int MidiHandler::init(std::string midiDevice) {
 
@@ -24,6 +26,8 @@ int MidiHandler::init(std::string midiDevice) {
 		for (int x = 0; x < 9; x++) {
 			for (int y = 0; y < 9; y++) {
 				ledBuffer[x][y] = 0x0;
+				ledBufferOld[x][y] = 0x0;
+
 				noteBuffer[x][y] = false;
 				noteBufferOld[x][y] = false;
 			}
@@ -152,32 +156,48 @@ void MidiHandler::setLED(int x, int y, unsigned char color) {
 
 //Refresh the 8x8 LED grid on launchpad
 void MidiHandler::updateLEDs() {
-	unsigned char buffer[81];
 
-	int i = 0;
+	if (!ledBuffering) {
+		unsigned char buffer[81];
 
-	buffer[i] = 0x92; //This midi message initiates the rapid update mode
-	i++;
+		int i = 0;
 
-	for (int y = 0; y < 8; y++) {
-		for (int x = 0; x < 8; x++) {
-			buffer[i] = ledBuffer[x][y];
+		buffer[i] = 0x92; //This midi message initiates the rapid update mode
+		i++;
+
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				buffer[i] = ledBuffer[x][y];
+				i++;
+			}
+		}
+
+		for (int y = 0; y < 8; y++) {
+			buffer[i] = ledBuffer[8][y];
 			i++;
 		}
+
+		for (int x = 0; x < 8; x++) {
+			buffer[i] = ledBuffer[x][8];
+			i++;
+		}
+
+
+		snd_rawmidi_write(midi_out, buffer, 81);
+	} else {
+
+		unsigned char color;
+
+		sendEvent(0xB0, 0x00, 0x31); //Set buffer 1 to be displayed, allowing us to write to buffer 0 without displaying anything
+
+		for (int x = 0; x < 9; x++) {
+			for (int y = 0; y < 8; y++) {
+				color = ledBuffer[x][y] & 0b00110011;
+				sendNote(true, (y * 0x10) + x, color);
+			}
+		}
+
 	}
-
-	for (int y = 0; y < 8; y++) {
-		buffer[i] = ledBuffer[8][y];
-		i++;
-	}
-
-	for (int x = 0; x < 8; x++) {
-		buffer[i] = ledBuffer[x][8];
-		i++;
-	}
-
-
-	snd_rawmidi_write(midi_out, buffer, 81);
 	snd_rawmidi_drain(midi_out);
 }
 

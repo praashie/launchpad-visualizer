@@ -42,5 +42,8 @@ class MidiHandler{
 		static bool noteBuffer[9][9];
 		static bool noteBufferOld[9][9];
 		static unsigned char ledBuffer[9][9];
+		static unsigned char ledBufferOld[9][9];
+
+		static bool ledBuffering;
 };
 #endif
