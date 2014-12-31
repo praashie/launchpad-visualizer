@@ -4,7 +4,8 @@
 
 #include <tclap/CmdLine.h>
 
-#include "../include/GameOfLife.h"
+//#include "../include/GameOfLife.h"
+#include "../include/TextScroller.h"
 
 
 //====================================================
@@ -126,16 +127,26 @@ int initProgram() {
 		endProgram(2);
 	}
 
-	GameOfLife::init();
+	//GameOfLife::init();
+	TextScroller::init();
+
+	return 1;
 }
 
 //Updating
 void updateProgram() {
 
 	//TODO
+	/*
+	MidiHandler::handleInput();
 
+	//GameOfLife::update();
+	TextScroller::update();
+
+	MidiHandler::updateLEDs();
+	usleep(10000);
+	*/
 	MidiHandler::testMIDI();
-
 }
 
 

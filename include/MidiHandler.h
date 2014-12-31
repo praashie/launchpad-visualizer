@@ -6,8 +6,7 @@
 #include <alsa/asoundlib.h>
 #include <unistd.h>
 
-#include "GameOfLife.h"
-
+#include "TextScroller.h"
 class MidiHandler{
 	public:
 		static bool ledBuffering;

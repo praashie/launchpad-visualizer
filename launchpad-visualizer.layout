@@ -8,21 +8,27 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="include/GameOfLife.h" open="1" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="132" topLine="0" />
 	</File>
 	<File name="include/MidiHandler.h" open="1" top="0" tabpos="3">
-		<Cursor position="1050" topLine="26" />
+		<Cursor position="135" topLine="0" />
+	</File>
+	<File name="include/TextScroller.h" open="1" top="0" tabpos="9">
+		<Cursor position="230" topLine="5" />
 	</File>
 	<File name="src/FFTHandler.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="src/GameOfLife.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="0" topLine="57" />
+		<Cursor position="547" topLine="13" />
 	</File>
-	<File name="src/MidiHandler.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="4194" topLine="174" />
+	<File name="src/MidiHandler.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="4856" topLine="218" />
+	</File>
+	<File name="src/TextScroller.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="946" topLine="45" />
 	</File>
 	<File name="src/main.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="3230" topLine="104" />
+		<Cursor position="3316" topLine="111" />
 	</File>
 </CodeBlocks_layout_file>

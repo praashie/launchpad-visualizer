@@ -1,5 +1,5 @@
 #include "../include/MidiHandler.h"
-
+#include "../include/TextScroller.h"
 
 bool MidiHandler::isInitialized;
 bool MidiHandler::ledBuffering;
@@ -231,7 +231,8 @@ void MidiHandler::testMIDI() {
 
 	handleInput();
 
-	GameOfLife::update();
+	//GameOfLife::update();
+	TextScroller::update();
 
 	updateLEDs();
 	usleep(10000);

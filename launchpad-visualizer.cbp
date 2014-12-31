@@ -45,9 +45,11 @@
 		<Unit filename="include/FFTHandler.h" />
 		<Unit filename="include/GameOfLife.h" />
 		<Unit filename="include/MidiHandler.h" />
+		<Unit filename="include/TextScroller.h" />
 		<Unit filename="src/FFTHandler.cpp" />
 		<Unit filename="src/GameOfLife.cpp" />
 		<Unit filename="src/MidiHandler.cpp" />
+		<Unit filename="src/TextScroller.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />

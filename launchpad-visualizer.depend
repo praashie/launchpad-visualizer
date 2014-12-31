@@ -103,26 +103,33 @@
 1414953069 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/include/FFTHandler.h
 	<fftw3.h>
 
-1415024147 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/GameOfLife.cpp
+1420065833 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/GameOfLife.cpp
 	"../include/GameOfLife.h"
 
 1415024147 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/include/GameOfLife.h
 	"MidiHandler.h"
 
-1415048994 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/include/MidiHandler.h
+1420065897 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/include/MidiHandler.h
 	<stdlib.h>
 	<string>
 	<alsa/asoundlib.h>
 	<unistd.h>
-	"GameOfLife.h"
+	"TextScroller.h"
 
-1415048855 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/MidiHandler.cpp
+1420062058 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/MidiHandler.cpp
 	"../include/MidiHandler.h"
+	"../include/TextScroller.h"
 
-1415028244 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/main.cpp
+1420065954 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<signal.h>
 	<tclap/CmdLine.h>
-	"../include/GameOfLife.h"
+	"../include/TextScroller.h"
+
+1420063038 /home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/include/TextScroller.h
+	"MidiHandler.h"
+
+1420066901 source:/home/elmo/documents/ohjelmointi/cpp/launchpad-visualizer/src/TextScroller.cpp
+	"../include/TextScroller.h"
 
