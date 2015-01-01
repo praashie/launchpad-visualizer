@@ -4,8 +4,8 @@
 
 #include <tclap/CmdLine.h>
 
-//#include "../include/GameOfLife.h"
 #include "../include/TextScroller.h"
+#include "../include/GameOfLife.h"
 
 
 //====================================================
@@ -45,6 +45,7 @@ bool isTerminated() {
 std::string alsaDeviceName;
 std::string launchpadDeviceName;
 bool verbose;
+bool isGameOfLife;
 
 //====================================================
 //Methods
@@ -87,16 +88,18 @@ void handleTCLAP(int argc, char* argv[]) {
 		TCLAP::CmdLine cmd("LPVisualizer displays real-time audio spectrum on a Novation Launchpad.", ' ', "0.0");
 
 		//Argument definitions
-		TCLAP::ValueArg<std::string> alsaDeviceArg	("i", "input", "Device name of the ALSA audio input to be analyzed", true, "", "string");
+		TCLAP::ValueArg<std::string> alsaDeviceArg	("i", "input", "TODO", false, "", "string");
 		TCLAP::ValueArg<std::string> launchpadDeviceArg	("o", "output", "Device name of the ALSA MIDI output to be used as a display", true, "", "string");
 		TCLAP::SwitchArg verboseArg		("v", "verbose", "Give verbose output", false);
-		TCLAP::SwitchArg ledBufferingArg("b", "buffered-leds", "Update the launchpad LEDs by using the launchpad's internal buffers");
+		TCLAP::SwitchArg ledBufferingArg("b", "buffered-leds", "Update the launchpad LEDs by using the launchpad's internal buffers (with inconsistent update rates)");
+		TCLAP::SwitchArg isGolArg	("g", "game-of-life", "Run Conway's Game of Life instead of the default text scroller");
 
 		//Add argument definitions into program definition
 		cmd.add(alsaDeviceArg);
 		cmd.add(launchpadDeviceArg);
 		cmd.add(verboseArg);
 		cmd.add(ledBufferingArg);
+		cmd.add(isGolArg);
 
 		//Parse arguments
 		cmd.parse( argc, argv);
@@ -104,6 +107,7 @@ void handleTCLAP(int argc, char* argv[]) {
 		alsaDeviceName 				= alsaDeviceArg.getValue();
 		launchpadDeviceName 		= launchpadDeviceArg.getValue();
 		verbose 					= verboseArg.getValue();
+		isGameOfLife				= isGolArg.getValue();
 		MidiHandler::ledBuffering 	= ledBufferingArg.getValue();
 
 	} catch (TCLAP::ArgException &e) {
@@ -127,8 +131,8 @@ int initProgram() {
 		endProgram(2);
 	}
 
-	//GameOfLife::init();
-	TextScroller::init();
+	if (isGameOfLife) {GameOfLife::init();}
+	else {TextScroller::init();}
 
 	return 1;
 }
@@ -137,16 +141,16 @@ int initProgram() {
 void updateProgram() {
 
 	//TODO
-	/*
+
 	MidiHandler::handleInput();
 
-	//GameOfLife::update();
-	TextScroller::update();
+	if (isGameOfLife) {GameOfLife::update();}
+	else {TextScroller::update();}
 
 	MidiHandler::updateLEDs();
-	usleep(10000);
-	*/
-	MidiHandler::testMIDI();
+	//usleep(10000);
+
+	//MidiHandler::testMIDI();
 }
 
 
