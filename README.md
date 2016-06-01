@@ -1,14 +1,12 @@
 launchpad-visualizer
 ====================
 
-launchpad-visualizer displays real-time audio spectrum on a Novation Launchpad.
+Interacts with a Novation Launchpad to display interactive graphics.
 
-THIS PROJECT IS A **WORK-IN-PROGRESS**.
+Original inspiration was to visualize computer audio playback.
+Currently, it's only an interactive Game of Life and a colorful "doodling-scroller".
 
-Current progress:
-
-* Launchpad MIDI handling
-	* testing with interactive Conway's Game of Life
+[Video demonstration](https://youtu.be/kKwqy_cykw0)
 
 Todo:
 * Audio handling
